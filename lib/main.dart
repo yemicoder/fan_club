@@ -26,9 +26,9 @@ class MyApp extends StatelessWidget {
           theme: ThemeData(
             primarySwatch: Colors.blue,
           ),
-          home: const Navigation(),
+          home: const GetStartedScreen(),
           getPages: [
-            GetPage(name: "/home/", page: () => const HomeScreen()),
+            GetPage(name: "/home/", page: () =>  HomeScreen()),
             GetPage(name: "/signup/", page: () => const SignUpScreen()),
             GetPage(name: "/login/", page: () => const LogInScreen())
           ],

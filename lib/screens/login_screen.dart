@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
+import '../widgets/navigation.dart';
 import '../widgets/textfied_widget.dart';
 
 class LogInScreen extends StatefulWidget {
@@ -82,7 +85,9 @@ class _LogInScreenState extends State<LogInScreen> {
                 children: [
                   const Text("Not yet a member?"),
                   SizedBox(width: 1.w,),
-                  TextButton( onPressed: () {  }, child: const Text("Signup",
+                  TextButton( onPressed: () {
+                    Get.to(() => Navigation());
+                  }, child: const Text("Signup",
                     style: TextStyle(
                         color: Colors.purple
                     ),

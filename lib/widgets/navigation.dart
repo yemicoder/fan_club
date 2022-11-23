@@ -21,7 +21,7 @@ class _NavigationState extends State<Navigation> {
   @override
   Widget build(BuildContext context) {
     List<Widget> _pages = [
-      const HomeScreen(),
+      HomeScreen(),
       const ProfileScreen(),
       const DiscoverScreen(),
       const BuddiesScreen(),
