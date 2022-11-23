@@ -1,5 +1,7 @@
 import 'package:fan_club/widgets/textfied_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
@@ -85,7 +87,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   children: [
                     const Text("Already a Fan Club user?"),
                     SizedBox(width: 3.w,),
-                    TextButton( onPressed: () {  }, child: const Text("Login",
+                    TextButton( onPressed: () {
+                      Get.toNamed("/login/");
+                    }, child: const Text("Login",
                       style: TextStyle(
                         color: Colors.purple
                     ),),)

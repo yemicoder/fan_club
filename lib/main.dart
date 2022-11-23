@@ -1,6 +1,8 @@
 import 'package:fan_club/screens/get_started_screen.dart';
 import 'package:fan_club/screens/home_screen.dart';
+import 'package:fan_club/screens/login_screen.dart';
 import 'package:fan_club/screens/signup_screen.dart';
+import 'package:fan_club/widgets/navigation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
@@ -24,10 +26,11 @@ class MyApp extends StatelessWidget {
           theme: ThemeData(
             primarySwatch: Colors.blue,
           ),
-          home: const GetStartedScreen(),
+          home: const Navigation(),
           getPages: [
             GetPage(name: "/home/", page: () => const HomeScreen()),
             GetPage(name: "/signup/", page: () => const SignUpScreen()),
+            GetPage(name: "/login/", page: () => const LogInScreen())
           ],
         );
       },
