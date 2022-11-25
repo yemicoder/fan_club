@@ -10,10 +10,10 @@ class HomeScreen extends StatelessWidget {
   @override
 
   final List clubItems = [
-    ["Swimming", "4.00", "assets/images/swimming.png", Colors.blue],
-    ["Track", "2.50", "assets/images/track.png", Colors.green],
-    ["Football", "12.80", "assets/images/football.png", Colors.brown],
-    ["Basketball", "1.00", "assets/images/basketball.png", Colors.blue],
+    ["Swimming", "4.00", "assets/images/swimming.png", Colors.purple],
+    ["Track", "2.50", "assets/images/track.png", Colors.red],
+    ["Football", "12.80", "assets/images/football.png", Colors.orange],
+    ["Basketball", "1.00", "assets/images/basketball.png", Colors.deepPurple],
     ["Cycling", "3.00", "assets/images/cycling.png", Colors.cyan],
     ["Tennis", "2.00", "assets/images/tennis.png", Colors.pink],
   ];
@@ -35,7 +35,7 @@ class HomeScreen extends StatelessWidget {
                   ),),
                   ClipRRect(
                     borderRadius: BorderRadius.circular(10),
-                    child: Image(image: AssetImage("assets/images/dummy-profile-pic.png"), height: 5.h,),
+                    child: Image(image: const AssetImage("assets/images/dummy-profile-pic.png"), height: 5.h,),
                   ),
                 ],
               ),
@@ -43,6 +43,51 @@ class HomeScreen extends StatelessWidget {
               Text("What are you\nup to today?", style: GoogleFonts.adventPro(
                 fontSize: 20.sp
               ),),
+              SizedBox(height: 4.h,),
+
+              Container(
+                height: 25.h,
+                width: double.infinity,
+                decoration: BoxDecoration(
+                  color: Colors.grey[200],
+                  borderRadius: BorderRadius.circular(30),
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    //SizedBox(width: 10.w,),
+                  const Image(image: AssetImage("assets/images/fan.jpeg"), height: 150,),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        SizedBox(height: 4.h,),
+                        Text("Today's Event", style: GoogleFonts.adventPro(
+                          color: Colors.deepOrange,
+                          fontSize: 20.sp,
+                          fontWeight: FontWeight.w400,
+                        ),
+                        ),
+                        SizedBox(height: 1.h,),
+                        const Text("Fan's meet and greet"),
+                        SizedBox(height: 1.h,),
+                        Row(
+                          children: const [
+                            Icon(Icons.location_on, color: Colors.deepOrange,),
+                            Text("Qatar"),
+                          ],
+                        ),
+                        SizedBox(height: 1.h,),
+                        ElevatedButton(onPressed: () {},
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.deepOrange
+                        ),
+                            child: Text("Reserve a seat"))
+                      ],
+                    )
+                  ],
+                ),
+              ),
+
               SizedBox(height: 4.h,),
 
               Expanded(

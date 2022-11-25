@@ -22,9 +22,9 @@ class _NavigationState extends State<Navigation> {
   Widget build(BuildContext context) {
     List<Widget> _pages = [
       HomeScreen(),
-      const ProfileScreen(),
       const DiscoverScreen(),
       const BuddiesScreen(),
+      const ProfileScreen(),
       const SettingsScreen(),
     ];
     return Scaffold(
@@ -42,12 +42,12 @@ class _NavigationState extends State<Navigation> {
         },
         items: const [
           BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
-          BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Profile'),
           BottomNavigationBarItem(
             icon: Icon(Icons.sports_baseball),
             label: 'Discover',
           ),
           BottomNavigationBarItem(icon: Icon(Icons.people), label: 'Buddies'),
+          BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Profile'),
           BottomNavigationBarItem(
               icon: Icon(Icons.settings), label: 'Settings'),
         ],

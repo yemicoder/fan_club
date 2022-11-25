@@ -5,6 +5,8 @@ import 'package:get/get_core/src/get_main.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
+import '../controllers/home_controller.dart';
+
 class SignUpScreen extends StatefulWidget {
   const SignUpScreen({Key? key}) : super(key: key);
 
@@ -14,6 +16,7 @@ class SignUpScreen extends StatefulWidget {
 
 class _SignUpScreenState extends State<SignUpScreen> {
   bool isVisible =  false;
+  final controller = Get.put(HomeController());
 
   @override
   Widget build(BuildContext context) {
@@ -37,38 +40,161 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 ),
                 ),
                 SizedBox(height: 6.h,),
-                TextFormWidget(obscureText: false,
-                prefixIcon: const Icon(Icons.person, color: Colors.purple,),
-                keyboardType: TextInputType.text, hintText: 'Enter first name here',
-                    labelText: 'First Name',),
+
+                // First name form field
+                TextFormField(
+                  //controller: widget.controller,
+                  autovalidateMode: AutovalidateMode.onUserInteraction,
+                  decoration: InputDecoration(
+                    prefixIcon: const Icon(
+                      Icons.person,
+                      color: Colors.purple,
+                    ),
+                    filled: true,
+                    fillColor: Colors.grey[200],
+                    hintText: "Enter first name here",
+                    //label: Text(labelText!),
+                    hintStyle:
+                    TextStyle(fontSize: 15.sp, fontWeight: FontWeight.w300),
+                    labelStyle: const TextStyle(color: Colors.purple),
+                    enabledBorder: InputBorder.none,
+                    focusedBorder: const OutlineInputBorder(
+                      borderSide: BorderSide(
+                          width: 0.5, color: Colors.purple),
+                    ),
+                  ),
+                  validator: controller.validateName,
+                ),
                 SizedBox(height: 3.h,),
-                TextFormWidget(obscureText: false,
-                  prefixIcon: const Icon(Icons.person, color: Colors.purple,),
-                  keyboardType: TextInputType.text, hintText: 'Enter last name here',
-                  labelText: 'Last Name',),
+
+                // Last name form field
+                TextFormField(
+                  //controller: widget.controller,
+                  autovalidateMode: AutovalidateMode.onUserInteraction,
+                  decoration: InputDecoration(
+                    prefixIcon: const Icon(
+                      Icons.person,
+                      color: Colors.purple,
+                    ),
+                    filled: true,
+                    fillColor: Colors.grey[200],
+                    hintText: "Enter last name here",
+                    //label: Text(labelText!),
+                    hintStyle:
+                    TextStyle(fontSize: 15.sp, fontWeight: FontWeight.w300),
+                    labelStyle: const TextStyle(color: Colors.purple),
+                    enabledBorder: InputBorder.none,
+                    focusedBorder: const OutlineInputBorder(
+                      borderSide: BorderSide(
+                          width: 0.5, color: Colors.purple),
+                    ),
+                  ),
+                  validator: controller.validateName,
+                ),
+
                 SizedBox(height: 3.h,),
-                TextFormWidget(obscureText: false,
-                  prefixIcon: const Icon(Icons.mail, color: Colors.purple,),
-                  keyboardType: TextInputType.text, hintText: 'Your email here',
-                  labelText: 'Email',),
+
+                // Email form field
+                TextFormField(
+                  //controller: widget.controller,
+                  autovalidateMode: AutovalidateMode.onUserInteraction,
+                  decoration: InputDecoration(
+                    prefixIcon: const Icon(
+                      Icons.email,
+                      color: Colors.purple,
+                    ),
+                    filled: true,
+                    fillColor: Colors.grey[200],
+                    hintText: "Email address",
+                    //label: Text(labelText!),
+                    hintStyle:
+                    TextStyle(fontSize: 15.sp, fontWeight: FontWeight.w300),
+                    labelStyle: const TextStyle(color: Colors.purple),
+                    enabledBorder: InputBorder.none,
+                    focusedBorder: const OutlineInputBorder(
+                      borderSide: BorderSide(
+                          width: 0.5, color: Colors.purple),
+                    ),
+                  ),
+                  validator: controller.validateEmail,
+                ),
+
                 SizedBox(height: 3.h,),
-                TextFormWidget(obscureText: false,
-                  prefixIcon: const Icon(Icons.phone, color: Colors.purple,),
-                  keyboardType: TextInputType.number, hintText: 'Your phone number here',
-                  labelText: 'Phone number',),
+
+                // Phone number form field
+                TextFormField(
+                  //controller: widget.controller,
+                  autovalidateMode: AutovalidateMode.onUserInteraction,
+                  keyboardType: TextInputType.number,
+                  decoration: InputDecoration(
+                    prefixIcon: const Icon(
+                      Icons.phone,
+                      color: Colors.purple,
+                    ),
+                    filled: true,
+                    fillColor: Colors.grey[200],
+                    hintText: "your phone number here",
+                    //label: Text(labelText!),
+                    hintStyle:
+                    TextStyle(fontSize: 15.sp, fontWeight: FontWeight.w300),
+                    labelStyle: const TextStyle(color: Colors.purple),
+                    enabledBorder: InputBorder.none,
+                    focusedBorder: const OutlineInputBorder(
+                      borderSide: BorderSide(
+                          width: 0.5, color: Colors.purple),
+                    ),
+                  ),
+                  validator: controller.validatePhoneNumber,
+                ),
+
                 SizedBox(height: 3.h,),
-                TextFormWidget(obscureText: isVisible,
-                  prefixIcon: const Icon(Icons.lock, color: Colors.purple,),
-                  keyboardType: TextInputType.number, hintText: 'Enter password here',
-                  labelText: 'Password', suffixIcon: GestureDetector(
+
+                // Password field
+                TextFormField(
+                  //controller: widget.controller,
+                  autovalidateMode: AutovalidateMode.onUserInteraction,
+                  obscureText: isVisible,
+                  decoration: InputDecoration(
+                    prefixIcon: const Icon(
+                      Icons.lock,
+                      color: Colors.purple,
+                    ),
+                    filled: true,
+                    fillColor: Colors.grey[200],
+                    hintText: "Enter password here",
+                    //label: Text(labelText!),
+                    hintStyle:
+                    TextStyle(fontSize: 15.sp, fontWeight: FontWeight.w300),
+                    labelStyle: const TextStyle(color: Colors.purple),
+                    enabledBorder: InputBorder.none,
+                    focusedBorder: const OutlineInputBorder(
+                      borderSide: BorderSide(
+                          width: 0.5, color: Colors.purple),
+                    ),
+                    suffixIcon: GestureDetector(
                       onTap: () {
                         setState(() {
                           isVisible = !isVisible;
                         });
-                      }, child: isVisible ? const Icon(Icons.visibility, color: Colors.purple, size: 20,) : const Icon(Icons.visibility_off, color: Colors.purple, size: 20,),
+                      },
+                      child: isVisible
+                          ? const Icon(
+                        Icons.visibility_off,
+                        color: Colors.purple,
+                        size: 20,
+                      )
+                          : const Icon(
+                        Icons.visibility,
+                        color: Colors.purple,
+                        size: 20,
+                      ),
+                    ),
                   ),
+                  validator: controller.validatePassword,
                 ),
+
                 SizedBox(height: 3.h,),
+
                 SizedBox(
                   height: 6.h,
                   width: double.infinity,
@@ -81,7 +207,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       ),
                   ),
                 ),
+
                 SizedBox(height: 3.h,),
+
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
