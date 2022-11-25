@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "827623948694",
+    "project_id": "fan-club-35d99",
+    "storage_bucket": "fan-club-35d99.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:827623948694:android:d759c0fb2376bd23941db7",
+        "android_client_info": {
+          "package_name": "com.example.fan_club"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "827623948694-i2c2s1e3anv3nc2hi284koa1emh831md.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBmXkIIp4EYMbeN8KHZLGpTNb1Ku1fl8fw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "827623948694-i2c2s1e3anv3nc2hi284koa1emh831md.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
