@@ -27,32 +27,6 @@ class _LogInScreenState extends State<LogInScreen> {
   final loginController = Get.put(LoginController());
   final regController = Get.put(SignUpController());
 
-  // This function initiates firebase auth and enable users to login
-  login() async {
-
-    setState(() {
-      isLoading = true;
-    });
-    String res = await loginController.loginUsers(regController.email.text,
-        regController.password.text);
-
-    setState(() {
-      isLoading = false;
-    });
-
-    try {
-      if (res != 'success') {
-        return (Get.snackbar('Hey user', 'Login successful'));
-      }
-      else {
-        res = "Login successful";
-        return Get.to(() => Navigation());
-      }
-    }
-    catch (e) {
-      return (Get.snackbar('Hey user', e.toString()));
-    }
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -186,18 +160,19 @@ class _LogInScreenState extends State<LogInScreen> {
                 width: double.infinity,
                 child: ElevatedButton(
                   style:
-                      ElevatedButton.styleFrom(backgroundColor: Colors.purple),
+                  ElevatedButton.styleFrom(backgroundColor: Colors.purple),
                   onPressed: () {
-                    login();
+                    loginController.login();
                   },
-                  child: isLoading ?
-                  CircularProgressIndicator(color: Colors.white,)
-                      : const Text(
-                    "Login",
-                    style: TextStyle(color: Colors.white),
+                  child: Obx(
+                    () => loginController.isLoading.value ?
+                    const CircularProgressIndicator(color: Colors.white,)
+                        : const Text(
+                      "Login",
+                      style: TextStyle(color: Colors.white),
+                    ),
                   ),
-                ),
-              ),
+                ),),
               SizedBox(
                 height: 3.h,
               ),

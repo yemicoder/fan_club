@@ -8,6 +8,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 import '../controllers/home_controller.dart';
+import '../controllers/login_controller.dart';
 
 class SignUpScreen extends StatefulWidget {
   const SignUpScreen({Key? key}) : super(key: key);
@@ -21,33 +22,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
   bool isVisible =  false;
   late bool isLoading = false;
   final controller = Get.put(HomeController());
+  final loginController = Get.put(LoginController());
   final regController = Get.put(SignUpController());
 
-  signUp() async {
 
-    setState(() {
-      isLoading = true;
-    });
-
-    String res = await regController.signUpUsers(regController.firstName.text,
-        regController.lastName.text, regController.email.text,
-        regController.password.text, regController.phoneNumber.text);
-
-    setState(() {
-      isLoading = false;
-    });
-
-    if(res != 'success') {
-      return Get.snackbar('Login', res);
-    }
-
-    else {
-      res = "Registration successful\nProceed to login!!";
-      return Get.to(() => VerifyEmailScreen());
-        //Get.snackbar('HEY USER', res, backgroundColor: Colors.green, colorText: Colors.white);
-    }
-
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -235,14 +213,16 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       color: Colors.purple,
                       onPressed: () {
                         if(regController.formKey.currentState!.validate()){
-                          signUp();
+                          regController.signUp();
                         }
                       },
-                        child: isLoading ?
-                        const CircularProgressIndicator(color: Colors.white,)
-                            : const Text("Sign me up", style: TextStyle(
-                          color: Colors.white
-                        ),
+                        child: Obx(
+                          () => regController.isLoading.value ?
+                          const CircularProgressIndicator(color: Colors.white,)
+                              : const Text("Sign me up", style: TextStyle(
+                            color: Colors.white
+                          ),
+                          ),
                         ),
                     ),
                   ),
