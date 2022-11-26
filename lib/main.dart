@@ -1,6 +1,8 @@
+import 'package:fan_club/screens/enter_otp_screen.dart';
 import 'package:fan_club/screens/get_started_screen.dart';
 import 'package:fan_club/screens/home_screen.dart';
 import 'package:fan_club/screens/login_screen.dart';
+import 'package:fan_club/screens/otp_screen.dart';
 import 'package:fan_club/screens/signup_screen.dart';
 import 'package:fan_club/widgets/navigation.dart';
 import 'package:firebase_core/firebase_core.dart';

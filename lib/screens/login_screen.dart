@@ -1,6 +1,7 @@
 import 'package:fan_club/controllers/home_controller.dart';
 import 'package:fan_club/controllers/login_controller.dart';
 import 'package:fan_club/controllers/signup_controller.dart';
+import 'package:fan_club/screens/otp_screen.dart';
 import 'package:fan_club/screens/signup_screen.dart';
 import 'package:fan_club/widgets/form_field_widget.dart';
 import 'package:flutter/material.dart';
@@ -173,6 +174,17 @@ class _LogInScreenState extends State<LogInScreen> {
                     ),
                   ),
                 ),),
+              Center(
+                child: TextButton(onPressed: (){
+                  Get.to(() => OtpScreen());
+                },
+                    child: const Text(
+                      "Login with phone number", style: TextStyle(
+                      color: Colors.red,
+                      decoration: TextDecoration.underline
+                    ),
+                    )),
+              ),
               SizedBox(
                 height: 3.h,
               ),

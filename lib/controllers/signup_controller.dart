@@ -36,8 +36,11 @@ class SignUpController extends GetxController {
   async {
     String res = 'some error occurred';
 
+
     try {
-      if(firstName.isNotEmpty && email.isNotEmpty &&
+      if(
+
+      firstName.isNotEmpty && email.isNotEmpty &&
           password.isNotEmpty && firstName.isNotEmpty && phoneNumber.isNotEmpty && password.isNotEmpty) {
         UserCredential cred = await _auth.createUserWithEmailAndPassword(
             email: email, password: password);
