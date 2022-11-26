@@ -1,6 +1,8 @@
 
 import 'package:fan_club/controllers/signup_controller.dart';
+import 'package:fan_club/screens/login_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../widgets/navigation.dart';
@@ -52,7 +54,8 @@ class LoginController extends GetxController {
 
     try {
       if (res != 'success') {
-        return (Get.snackbar('Hey user', 'Login successful'));
+        return (Get.snackbar('FanClub', 'Login failed\nCheck your network connection',
+            backgroundColor: Colors.purple, colorText: Colors.white));
       }
       else {
         res = "Login successful";
@@ -63,4 +66,10 @@ class LoginController extends GetxController {
       return (Get.snackbar('Hey user', e.toString()));
     }
   }
+
+  signOut() async {
+    await _auth.signOut().then((value) => Get.to(() => const LogInScreen()));
+    //Get.snackbar("Hey user", "You have been logged out", duration: const Duration(seconds: 3), backgroundColor: Colors.purple);
+}
+
 }

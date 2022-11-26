@@ -1,9 +1,9 @@
+import 'package:fan_club/controllers/cloud_controller.dart';
 import 'package:fan_club/controllers/home_controller.dart';
 import 'package:fan_club/controllers/login_controller.dart';
 import 'package:fan_club/controllers/signup_controller.dart';
 import 'package:fan_club/screens/otp_screen.dart';
 import 'package:fan_club/screens/signup_screen.dart';
-import 'package:fan_club/widgets/form_field_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
@@ -27,6 +27,7 @@ class _LogInScreenState extends State<LogInScreen> {
   final controller = Get.put(HomeController());
   final loginController = Get.put(LoginController());
   final regController = Get.put(SignUpController());
+  final cloudController = Get.put(CloudController());
 
 
   @override
@@ -151,8 +152,14 @@ class _LogInScreenState extends State<LogInScreen> {
                 validator: controller.validatePassword,
               ),
 
-              SizedBox(
-                height: 3.h,
+              Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  TextButton(onPressed: () {},
+                      child: const Text("Forgot password", style: TextStyle(
+                        color: Colors.purple
+                      ),)),
+                ],
               ),
 
               // Login button
@@ -164,6 +171,7 @@ class _LogInScreenState extends State<LogInScreen> {
                   ElevatedButton.styleFrom(backgroundColor: Colors.purple),
                   onPressed: () {
                     loginController.login();
+                    cloudController.getData();
                   },
                   child: Obx(
                     () => loginController.isLoading.value ?

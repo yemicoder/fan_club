@@ -26,7 +26,7 @@ class SignUpController extends GetxController {
   final phoneNumber = TextEditingController();
 
   final FirebaseAuth _auth = FirebaseAuth.instance;
-  final FirebaseFirestore _firestore = FirebaseFirestore.instance;
+  final FirebaseFirestore firestore = FirebaseFirestore.instance;
   final FirebaseStorage _firebaseStorage = FirebaseStorage.instance;
 
 
@@ -35,7 +35,6 @@ class SignUpController extends GetxController {
       String password, String phoneNumber)
   async {
     String res = 'some error occurred';
-
 
     try {
       if(
@@ -46,7 +45,7 @@ class SignUpController extends GetxController {
             email: email, password: password);
 
 
-        await _firestore.collection('users').doc(cred.user!.uid).set({
+        await firestore.collection('users').doc(cred.user!.uid).set({
           'first name' : firstName,
           'last name' : lastName,
           'email' : email,

@@ -24,8 +24,8 @@ class _NavigationState extends State<Navigation> {
       HomeScreen(),
       const DiscoverScreen(),
       const BuddiesScreen(),
-      const ProfileScreen(),
-      const SettingsScreen(),
+      ProfileScreen(),
+      SettingsScreen(),
     ];
     return Scaffold(
       bottomNavigationBar: BottomNavigationBar(

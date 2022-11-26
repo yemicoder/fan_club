@@ -1,9 +1,12 @@
+import 'package:fan_club/controllers/cloud_controller.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class ProfileScreen extends StatelessWidget {
-  const ProfileScreen({Key? key}) : super(key: key);
+   ProfileScreen({Key? key}) : super(key: key);
 
+  final cloudController = Get.put(CloudController());
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -18,7 +21,7 @@ class ProfileScreen extends StatelessWidget {
               return FlexibleSpaceBar(
                 title: AnimatedOpacity(
                   opacity: constraints.biggest.height <= 120 ? 1 : 0,
-                  duration: Duration(milliseconds: 300),
+                  duration: const Duration(milliseconds: 300),
                   child: const Text('Account'),
                 ),
                 background: Container(
@@ -29,18 +32,28 @@ class ProfileScreen extends StatelessWidget {
                         Colors.deepPurpleAccent,
                       ])),
                   child: Row(
-                    children: const [
-                      CircleAvatar(
+                    children:  [
+                      const CircleAvatar(
                         radius: 80,
                         backgroundImage: AssetImage("assets/images/dummy-profile-pic.png"),
                       ),
-                      SizedBox(width: 50,),
-                      Text('Guest',
-                        style: TextStyle(
-                          fontSize: 30,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.white,
-                        ),
+                      const SizedBox(width: 50,),
+                      Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          const Text('Welcome',
+                            style: TextStyle(
+                              fontSize: 14,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.grey,
+                            ),
+                          ),
+                          Text(cloudController.userData[1], style: const TextStyle(
+                            color: Colors.white,
+                            fontSize: 25
+                          ),)
+                        ],
                       ),
                     ],
                   ),
@@ -70,31 +83,31 @@ class ProfileScreen extends StatelessWidget {
                       borderRadius: BorderRadius.circular(20),
                     ),
                     child: Column(
-                      children: const [
+                      children: [
                         ListTile(
-                          title: Text('Email Address'),
-                          subtitle: Text("dubiafx@gmail.com"),
-                          leading: Icon(Icons.email),
+                          title: const Text("Email address"),
+                          subtitle: Text(cloudController.userData[3]),
+                          leading: const Icon(Icons.email),
                         ),
 
-                        Divider(
+                        const Divider(
                           color: Colors.black26, thickness: 1,
                         ),
 
                         ListTile(
-                          title: Text('Phone no'),
-                          subtitle: Text("+2348136262413"),
-                          leading: Icon(Icons.phone),
+                          title: const Text('Phone no'),
+                          subtitle: Text(cloudController.userData[2]),
+                          leading: const Icon(Icons.phone),
                         ),
 
-                        Divider(
+                        const Divider(
                           color: Colors.black26, thickness: 1,
                         ),
 
                         ListTile(
-                          title: Text('Location'),
-                          subtitle: Text("Plot 924 madiba street"),
-                          leading: Icon(Icons.location_on_rounded),
+                          title: const Text('Full name'),
+                          subtitle: Text("${cloudController.userData[0]} ${cloudController.userData[1]}"),
+                          leading: const Icon(Icons.person),
                         ),
                       ],
                     ),
