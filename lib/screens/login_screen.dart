@@ -1,4 +1,7 @@
 import 'package:fan_club/controllers/home_controller.dart';
+import 'package:fan_club/controllers/login_controller.dart';
+import 'package:fan_club/controllers/signup_controller.dart';
+import 'package:fan_club/screens/signup_screen.dart';
 import 'package:fan_club/widgets/form_field_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -18,8 +21,39 @@ class LogInScreen extends StatefulWidget {
 
 class _LogInScreenState extends State<LogInScreen> {
   bool isVisible = false;
+  bool isLoading = false;
   String email = "";
   final controller = Get.put(HomeController());
+  final loginController = Get.put(LoginController());
+  final regController = Get.put(SignUpController());
+
+  // This function initiates firebase auth and enable users to login
+  login() async {
+
+    setState(() {
+      isLoading = true;
+    });
+    String res = await loginController.loginUsers(regController.email.text,
+        regController.password.text);
+
+    setState(() {
+      isLoading = false;
+    });
+
+    try {
+      if (res != 'success') {
+        return (Get.snackbar('Hey user', 'Login successful'));
+      }
+      else {
+        res = "Login successful";
+        return Get.to(() => Navigation());
+      }
+    }
+    catch (e) {
+      return (Get.snackbar('Hey user', e.toString()));
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -72,7 +106,7 @@ class _LogInScreenState extends State<LogInScreen> {
 
               // Email or password login field
               TextFormField(
-                //controller: widget.controller,
+                controller: regController.email,
                 autovalidateMode: AutovalidateMode.onUserInteraction,
                 decoration: InputDecoration(
                   prefixIcon: const Icon(
@@ -101,7 +135,7 @@ class _LogInScreenState extends State<LogInScreen> {
 
               // Login Password form
               TextFormField(
-                key: controller.loginFormKey,
+                controller: regController.password,
                 autovalidateMode: AutovalidateMode.onUserInteraction,
                 obscureText: isVisible,
                 keyboardType: TextInputType.number,
@@ -154,9 +188,11 @@ class _LogInScreenState extends State<LogInScreen> {
                   style:
                       ElevatedButton.styleFrom(backgroundColor: Colors.purple),
                   onPressed: () {
-                    controller.checkLogin();
+                    login();
                   },
-                  child: const Text(
+                  child: isLoading ?
+                  CircularProgressIndicator(color: Colors.white,)
+                      : const Text(
                     "Login",
                     style: TextStyle(color: Colors.white),
                   ),
@@ -174,7 +210,7 @@ class _LogInScreenState extends State<LogInScreen> {
                   ),
                   TextButton(
                     onPressed: () {
-                      Get.to(() => Navigation());
+                      Get.to(() => const SignUpScreen());
                     },
                     child: const Text(
                       "Signup",
