@@ -2,6 +2,7 @@
 import 'dart:async';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:fan_club/models/interest_model.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/cupertino.dart';
@@ -9,6 +10,7 @@ import 'package:get/get.dart';
 import 'package:multi_select_flutter/util/multi_select_item.dart';
 
 import '../screens/verify_email_screen.dart';
+import 'interests_controller.dart';
 
 class SignUpController extends GetxController {
 
@@ -25,6 +27,7 @@ class SignUpController extends GetxController {
   final firstName = TextEditingController();
   final lastName = TextEditingController();
   final phoneNumber = TextEditingController();
+  final interestController = Get.put(InterestsController());
 
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final FirebaseFirestore firestore = FirebaseFirestore.instance;
@@ -32,8 +35,8 @@ class SignUpController extends GetxController {
 
 
 
-  Future<String> signUpUsers(String firstName, String lastName, String email,
-      String password, String phoneNumber)
+  Future<dynamic> signUpUsers(String firstName, String lastName, String email,
+      String password, String phoneNumber, List interests)
   async {
     String res = 'some error occurred';
 
@@ -41,7 +44,8 @@ class SignUpController extends GetxController {
       if(
 
       firstName.isNotEmpty && email.isNotEmpty &&
-          password.isNotEmpty && firstName.isNotEmpty && phoneNumber.isNotEmpty && password.isNotEmpty) {
+          password.isNotEmpty && firstName.isNotEmpty && phoneNumber.isNotEmpty
+          && password.isNotEmpty && interestController.selectedInterests.isNotEmpty) {
         UserCredential cred = await _auth.createUserWithEmailAndPassword(
             email: email, password: password);
 
@@ -51,17 +55,19 @@ class SignUpController extends GetxController {
           'last name' : lastName,
           'email' : email,
           'phone number' : phoneNumber,
-        });
+          'interests': interests,
+        }
+        );
+
+
 
         res = 'success';
-
-        debugPrint("account created");
+        
 
       }
 
       else {
         res = 'Please fields must not be empty';
-        debugPrint(res);
       }
     }
     catch (e) {
@@ -78,7 +84,7 @@ class SignUpController extends GetxController {
 
     String res = await signUpUsers(firstName.text,
         lastName.text, email.text,
-        password.text, phoneNumber.text);
+        password.text, phoneNumber.text, interestController.selectedInterests);
 
 
       isLoading(false);
@@ -91,7 +97,8 @@ class SignUpController extends GetxController {
     else {
       res = "Registration successful\nProceed to login!!";
       return Get.to(() => const VerifyEmailScreen());
-      //Get.snackbar('HEY USER', res, backgroundColor: Colors.green, colorText: Colors.white);
+      //Get.snackbar('HEY USER', res, backgroundColor: Colors.green,
+      // colorText: Colors.white);
     }
 
   }
@@ -99,9 +106,12 @@ class SignUpController extends GetxController {
 
 
   //Ensure Firebase auth is initialized and
-  // check if email is verified durring initialization
+  // check if email is verified during initialization
+
   void init() {
+
     // user needs to be created before verification is done
+
     debugPrint("Verifying email");
 
     isEmailVerified.value = FirebaseAuth.instance.currentUser!.emailVerified;

@@ -1,7 +1,6 @@
 import 'package:fan_club/controllers/login_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 class SettingsScreen extends StatelessWidget {
@@ -65,6 +64,7 @@ class SettingsScreen extends StatelessWidget {
             ),
           ),
           SizedBox(height: 40.h,),
+
           const Text("Developed by Yemicoder", style: TextStyle(
             fontWeight: FontWeight.w100
           ),),

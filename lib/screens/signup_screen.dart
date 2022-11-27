@@ -1,4 +1,5 @@
 import 'package:fan_club/controllers/signup_controller.dart';
+import 'package:fan_club/models/interest_model.dart';
 import 'package:fan_club/screens/verify_email_screen.dart';
 import 'package:fan_club/widgets/textfied_widget.dart';
 import 'package:flutter/material.dart';
@@ -207,15 +208,34 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     validator: controller.validatePassword,
                   ),
 
+                  SizedBox(height: 3.h,),
+
                   MultiSelectDialogField(
                       listType: MultiSelectListType.CHIP,
+                      chipDisplay: MultiSelectChipDisplay(),
                       decoration: BoxDecoration(
-                        color: Colors.purple,
+                        color: Colors.grey[200],
                         borderRadius: BorderRadius.circular(40)
                       ),
-                      buttonText: const Text("What are your intrests"),
-                      items: favoriteController.favorites,
-                      onConfirm: onConfirm)
+                      buttonText: const Text("What are your interests"),
+                      items: interestsController.interest.map((interest) =>
+                          MultiSelectItem(interest, interest.sport!)).toList(),
+                      title: const Text("Sporting Activities"),
+                      searchable: true,
+                      selectedColor: Colors.purple.withOpacity(0.1),
+                      autovalidateMode: AutovalidateMode.onUserInteraction,
+                      validator: (value) {
+                        if (value!.isEmpty) {
+                          return "You must select at least 1 interest";
+                        }
+                        return null;
+                      },
+                      onConfirm: (results) {
+                        results.forEach((element) {
+                          interestsController.selectedInterests.add(element.toString());
+                        });
+                      },
+                    ),
 
                   SizedBox(height: 3.h,),
 
