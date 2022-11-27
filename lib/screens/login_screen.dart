@@ -2,6 +2,7 @@ import 'package:fan_club/controllers/cloud_controller.dart';
 import 'package:fan_club/controllers/home_controller.dart';
 import 'package:fan_club/controllers/login_controller.dart';
 import 'package:fan_club/controllers/signup_controller.dart';
+import 'package:fan_club/screens/forgot_pw_screen.dart';
 import 'package:fan_club/screens/otp_screen.dart';
 import 'package:fan_club/screens/signup_screen.dart';
 import 'package:flutter/material.dart';
@@ -155,7 +156,9 @@ class _LogInScreenState extends State<LogInScreen> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
-                  TextButton(onPressed: () {},
+                  TextButton(onPressed: () {
+                    Get.to(() => ForgotPasswordScreen());
+                  },
                       child: const Text("Forgot password", style: TextStyle(
                         color: Colors.purple
                       ),)),

@@ -6,6 +6,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
+import 'package:multi_select_flutter/util/multi_select_item.dart';
 
 import '../screens/verify_email_screen.dart';
 

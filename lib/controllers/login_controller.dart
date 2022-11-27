@@ -13,6 +13,8 @@ class LoginController extends GetxController {
 
   final regController = Get.put(SignUpController());
 
+  final resetPasswordController = TextEditingController();
+
   final isLoading = false.obs;
 
 
@@ -67,9 +69,30 @@ class LoginController extends GetxController {
     }
   }
 
+  // This function initiate user Signout
   signOut() async {
     await _auth.signOut().then((value) => Get.to(() => const LogInScreen()));
     //Get.snackbar("Hey user", "You have been logged out", duration: const Duration(seconds: 3), backgroundColor: Colors.purple);
 }
+
+
+  resetPassword() async {
+    try {
+      await FirebaseAuth.instance.
+      sendPasswordResetEmail(
+          email: resetPasswordController.text.trim());
+      Get.dialog(const AlertDialog(
+        content: Text("Password reset link sent\nCheck your email",
+        textAlign: TextAlign.center,
+        ),
+      ));
+    } on FirebaseAuthException catch (e) {
+      Get.dialog(AlertDialog(
+        content: Text(e.message.toString()),
+      ));
+    }
+  }
+
+
 
 }

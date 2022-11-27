@@ -6,7 +6,9 @@ import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
+import 'package:multi_select_flutter/multi_select_flutter.dart';
 
+import '../controllers/interests_controller.dart';
 import '../controllers/home_controller.dart';
 import '../controllers/login_controller.dart';
 
@@ -24,6 +26,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
   final controller = Get.put(HomeController());
   final loginController = Get.put(LoginController());
   final regController = Get.put(SignUpController());
+  final interestsController = Get.put(InterestsController());
 
 
 
@@ -203,6 +206,16 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     ),
                     validator: controller.validatePassword,
                   ),
+
+                  MultiSelectDialogField(
+                      listType: MultiSelectListType.CHIP,
+                      decoration: BoxDecoration(
+                        color: Colors.purple,
+                        borderRadius: BorderRadius.circular(40)
+                      ),
+                      buttonText: const Text("What are your intrests"),
+                      items: favoriteController.favorites,
+                      onConfirm: onConfirm)
 
                   SizedBox(height: 3.h,),
 
