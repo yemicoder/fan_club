@@ -1,35 +1,61 @@
 
 
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:fan_club/controllers/signup_controller.dart';
+//import 'package:fan_club/controllers/signup_controller.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
 
 class CloudController extends GetxController {
 
   var userData;
+  var userInterests;
   String userEmail = '';
   String userPhoneNumber = '';
   String userFirstName = '';
   String userLastName = '';
+  String values = '';
+  List<dynamic> interests = [];
 
   Future getData() async {
-
     final firebaseUserID = FirebaseAuth.instance.currentUser;
+    print(firebaseUserID);
 
-    if(firebaseUserID != null) {
-
-      await FirebaseFirestore.instance.
-      collection('users').
-      doc(firebaseUserID.uid).
-      get().then((value) {
-        userData = value.data()?.entries.map((e) => e.value).toList();
-      }).catchError((e) {
+    if (firebaseUserID != null) {
+      try {
+        await FirebaseFirestore.instance.
+        collection('users').
+        doc(firebaseUserID.uid).
+        get().then((value) {
+          userData = value
+              .data()
+              ?.entries
+              .map((e) => e.value)
+              .toList();
+          print(userData);
+        });
+      } catch (e) {
         print(e.toString());
-      });
-      print(userData[3]);
-      print(userData[0]);
+      };
+
+      try {
+        await FirebaseFirestore.instance.
+        collection('interests').
+        doc(firebaseUserID.uid).
+        get().then((value) {
+          interests = value
+              .data()!
+              .entries
+              .map((e) => e.value).toList();
+
+          interests.forEach((element) {
+            userInterests = element;
+          });
+          print(userInterests);
+        });
+      } catch (e) {
+        print(e.toString());
+      }
     }
+  }
 
   }
-}

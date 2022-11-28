@@ -38,6 +38,7 @@ class SignUpController extends GetxController {
   Future<dynamic> signUpUsers(String firstName, String lastName, String email,
       String password, String phoneNumber, List interests)
   async {
+
     String res = 'some error occurred';
 
     try {
@@ -55,14 +56,15 @@ class SignUpController extends GetxController {
           'last name' : lastName,
           'email' : email,
           'phone number' : phoneNumber,
+        }
+        );
+
+        await firestore.collection('interests').doc(cred.user!.uid).set({
           'interests': interests,
         }
         );
 
-
-
         res = 'success';
-        
 
       }
 
@@ -80,6 +82,8 @@ class SignUpController extends GetxController {
   signUp() async {
 
       isLoading(true);
+
+      print("Signing up");
 
 
     String res = await signUpUsers(firstName.text,

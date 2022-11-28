@@ -1,3 +1,4 @@
+import 'package:fan_club/controllers/cloud_controller.dart';
 import 'package:fan_club/controllers/signup_controller.dart';
 import 'package:fan_club/models/interest_model.dart';
 import 'package:fan_club/screens/verify_email_screen.dart';
@@ -28,6 +29,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
   final loginController = Get.put(LoginController());
   final regController = Get.put(SignUpController());
   final interestsController = Get.put(InterestsController());
+  final cloudController = Get.put(CloudController());
 
 
 
@@ -236,6 +238,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         });
                       },
                     ),
+
+                  ElevatedButton(onPressed: () {
+                    cloudController.getData();
+                  }, child: const Text("print")),
 
                   SizedBox(height: 3.h,),
 
