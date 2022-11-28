@@ -1,11 +1,7 @@
 import 'package:fan_club/controllers/cloud_controller.dart';
 import 'package:fan_club/controllers/signup_controller.dart';
-import 'package:fan_club/models/interest_model.dart';
-import 'package:fan_club/screens/verify_email_screen.dart';
-import 'package:fan_club/widgets/textfied_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:multi_select_flutter/multi_select_flutter.dart';
@@ -56,7 +52,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     fontWeight: FontWeight.bold
                   ),
                   ),
-                  SizedBox(height: 6.h,),
+
+                  SizedBox(height: 4.h,),
 
                   // First name form field
                   TextFormField(
@@ -96,7 +93,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       filled: true,
                       fillColor: Colors.grey[200],
                       hintText: "Enter last name here",
-                      //label: Text(labelText!),
                       hintStyle:
                       TextStyle(fontSize: 15.sp, fontWeight: FontWeight.w300),
                       labelStyle: const TextStyle(color: Colors.purple),
@@ -212,6 +208,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
 
                   SizedBox(height: 3.h,),
 
+                  // Select interests field
                   MultiSelectDialogField(
                       listType: MultiSelectListType.CHIP,
                       chipDisplay: MultiSelectChipDisplay(),
@@ -219,7 +216,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         color: Colors.grey[200],
                         borderRadius: BorderRadius.circular(40)
                       ),
-                      buttonText: const Text("What are your interests"),
+                      buttonText: const Text("What are your interests", style: TextStyle(
+                        fontWeight: FontWeight.w300,
+                        color: Colors.grey
+                      ),),
                       items: interestsController.interest.map((interest) =>
                           MultiSelectItem(interest, interest.sport!)).toList(),
                       title: const Text("Sporting Activities"),
@@ -233,15 +233,12 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         return null;
                       },
                       onConfirm: (results) {
-                        results.forEach((element) {
+                        for (var element in results) {
                           interestsController.selectedInterests.add(element.toString());
-                        });
+                        }
                       },
                     ),
 
-                  ElevatedButton(onPressed: () {
-                    cloudController.getData();
-                  }, child: const Text("print")),
 
                   SizedBox(height: 3.h,),
 

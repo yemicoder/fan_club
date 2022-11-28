@@ -1,4 +1,4 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
+
 import 'package:fan_club/controllers/cloud_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -8,7 +8,9 @@ import 'package:responsive_sizer/responsive_sizer.dart';
 class ProfileScreen extends StatelessWidget {
    ProfileScreen({Key? key}) : super(key: key);
 
+
   final cloudController = Get.put(CloudController());
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -56,14 +58,15 @@ class ProfileScreen extends StatelessWidget {
               color: Colors.grey,
               fontWeight: FontWeight.bold
             ),)),
+
             SizedBox(
               height: 8.h,
               child: ListView.builder(
-                scrollDirection: Axis.horizontal,
+                  scrollDirection: Axis.horizontal,
                   itemCount: cloudController.userInterests.length,
                   shrinkWrap: true,
                   itemBuilder: (BuildContext context, int index) {
-                    return Padding(
+                    return (cloudController.userInterests.isNotEmpty) ? Padding(
                       padding: const EdgeInsets.only(left: 5.0),
                       child: Container(
                         padding: const EdgeInsets.symmetric(horizontal: 5),
@@ -72,20 +75,24 @@ class ProfileScreen extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Container(
-                              height: 4.h,
-                              width: 25.w,
-                              padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 6),
-                              decoration: BoxDecoration(
-                                color: Colors.purple[200],
-                            borderRadius: BorderRadius.circular(20)
-                        ),
-                                child: Text(cloudController.userInterests[index].toString())),
+                                height: 4.h,
+                                width: 25.w,
+                                padding: const EdgeInsets.symmetric(horizontal: 15,
+                                    vertical: 7),
+                                decoration: BoxDecoration(
+                                    color: Colors.purple.withOpacity(0.2),
+                                    borderRadius: BorderRadius.circular(20)
+                                ),
+                                child: Text(cloudController.
+                                userInterests[index].toString(), style:
+                                const TextStyle(
+                                    color: Colors.purple
+                                ),)),
                           ],
                         ),
                       ),
-                    );
-                  }),
-            ),
+                    ) : const CircularProgressIndicator(color: Colors.white,);
+                  }),),
 
                 Text('Account Info',
                   style: GoogleFonts.adventPro(
@@ -97,50 +104,52 @@ class ProfileScreen extends StatelessWidget {
 
 
 
-                Padding(
-                  padding: const EdgeInsets.all(20.0),
-                  child: Container(
-                    padding: const EdgeInsets.all(30),
-                    height: 310,
-                    width: double.infinity,
-                    decoration: BoxDecoration(
-                      color: Colors.grey[300],
-                      borderRadius: BorderRadius.circular(20),
-                    ),
-                    child: Column(
-                      children: [
-
-                        ListTile(
-                          title: const Text('Full name'),
-                          subtitle: Text("${cloudController.userData[1]} ${cloudController.userData[0]}"),
-                          leading: const Icon(Icons.person),
-                        ),
-
-                        const Divider(
-                          color: Colors.black26, thickness: 1,
-                        ),
-
-                        ListTile(
-                          title: const Text("Email address"),
-                          subtitle: Text(cloudController.userData[3]),
-                          leading: const Icon(Icons.email),
-                        ),
-
-                        const Divider(
-                          color: Colors.black26, thickness: 1,
-                        ),
-
-                        ListTile(
-                          title: const Text('Phone no'),
-                          subtitle: Text(cloudController.userData[2]),
-                          leading: const Icon(Icons.phone),
-                        ),
-
-
-                      ],
-                    ),
-                  ),
+            Padding(
+              padding: const EdgeInsets.all(20.0),
+              child: Container(
+                padding: const EdgeInsets.all(30),
+                height: 310,
+                width: double.infinity,
+                decoration: BoxDecoration(
+                  color: Colors.grey[300],
+                  borderRadius: BorderRadius.circular(20),
                 ),
+                child: Column(
+                  children: [
+
+                    ListTile(
+                      title: const Text('Full name'),
+                      subtitle: Text("${cloudController.userData[1]} ${cloudController.userData[0]}"),
+                      leading: const Icon(Icons.person),
+                    ),
+
+                    const Divider(
+                      color: Colors.black26, thickness: 1,
+                    ),
+
+                    ListTile(
+                      title: const Text("Email address"),
+                      subtitle: Text(cloudController.userData[3]),
+                      leading: const Icon(Icons.email),
+                    ),
+
+                    const Divider(
+                      color: Colors.black26, thickness: 1,
+                    ),
+
+                    ListTile(
+                      title: const Text('Phone no'),
+                      subtitle: Text(cloudController.userData[6]),
+                      leading: const Icon(Icons.phone),
+                    ),
+
+
+                  ],
+                ),
+              ),
+            ),
+
+
 
 
               ],

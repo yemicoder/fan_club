@@ -1,7 +1,7 @@
 import 'package:fan_club/screens/login_screen.dart';
+import 'package:fan_club/screens/otp_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 class EmailSuccessScreen extends StatelessWidget {
@@ -13,8 +13,10 @@ class EmailSuccessScreen extends StatelessWidget {
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Center(child: Image(image: const AssetImage("assets/images/success.png"),
-            height: 24.h,)),
+          Center(child: Image(
+            image: const AssetImage("assets/images/success.png"),
+            height: 24.h,),
+          ),
           SizedBox(height: 3.h,),
           const Center(
             child: Text(
@@ -29,15 +31,15 @@ class EmailSuccessScreen extends StatelessWidget {
           Center(
             child: SizedBox(
               height: 6.h,
-              width: 40.w,
+              width: 50.w,
               child: ElevatedButton(
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.purple,
                   ),
                   onPressed: () {
-                    Get.to(() => const LogInScreen());
+                    Get.offAll(() => OtpScreen());
                   },
-                  child: const Text("Proceed to login")),
+                  child: const Text("Verify your phone number")),
             ),
           )
         ],

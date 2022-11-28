@@ -42,8 +42,8 @@ class PhoneAuthController extends GetxController {
         verificationId: verificationIDReceived,
         smsCode: otp.text);
 
-    await auth.signInWithCredential(credential).then((value) =>
-      Get.to(() => const Navigation()),
+    await auth.currentUser?.linkWithCredential(credential).then((value) =>
+      Get.off(() => const Navigation()),
     );
   }
 }

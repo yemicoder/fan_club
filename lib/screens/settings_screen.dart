@@ -1,18 +1,22 @@
+import 'package:fan_club/controllers/cloud_controller.dart';
 import 'package:fan_club/controllers/login_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
+import 'forgot_pw_screen.dart';
+
 class SettingsScreen extends StatelessWidget {
   SettingsScreen({Key? key}) : super(key: key);
 
   final loginController = Get.put(LoginController());
+  final cloudController = Get.put(CloudController());
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Profile settings"),
+        title: const Text("Account settings"),
         elevation: 0,
         backgroundColor: Colors.purple,
       ),
@@ -41,9 +45,14 @@ class SettingsScreen extends StatelessWidget {
                     color: Colors.black26, thickness: 1,
                   ),
 
-                  const ListTile(
-                    title: Text('Change Password'),
-                    leading: Icon(Icons.phone),
+                  GestureDetector(
+                    onTap: () {
+                      Get.to(() => ForgotPasswordScreen());
+                    },
+                    child: const ListTile(
+                      title: Text('Change Password'),
+                      leading: Icon(Icons.phone),
+                    ),
                   ),
 
                   const Divider(
@@ -51,8 +60,8 @@ class SettingsScreen extends StatelessWidget {
                   ),
 
                   InkWell(
-                      onTap: () {
-                        loginController.signOut();
+                      onTap: () async {
+                        await loginController.signOut();
                       },
                     child: const ListTile(
                       title: Text('Logout'),
@@ -63,11 +72,18 @@ class SettingsScreen extends StatelessWidget {
               ),
             ),
           ),
-          SizedBox(height: 40.h,),
+
+          SizedBox(height: 30.h,),
+
+          ElevatedButton(onPressed: () {
+            cloudController.getData();
+          },
+              child: const Text("Print")),
 
           const Text("Developed by Yemicoder", style: TextStyle(
             fontWeight: FontWeight.w100
           ),),
+
         ],
         ),
       ),

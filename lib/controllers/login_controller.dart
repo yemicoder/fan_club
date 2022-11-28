@@ -1,4 +1,5 @@
 
+import 'package:fan_club/controllers/cloud_controller.dart';
 import 'package:fan_club/controllers/signup_controller.dart';
 import 'package:fan_club/screens/login_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -15,6 +16,8 @@ class LoginController extends GetxController {
 
   final resetPasswordController = TextEditingController();
 
+  final cloudController = Get.put(CloudController());
+
   final isLoading = false.obs;
 
 
@@ -26,16 +29,11 @@ class LoginController extends GetxController {
         await _auth.signInWithEmailAndPassword(
             email: email, password: password);
         res = 'success';
-        print("login successful");
-      }
-      else {
-        res = 'login failed, fields must not be empty';
-        print(res);
+        debugPrint("login successful");
       }
     }
     catch (e) {
-      res = e.toString();
-      print(e.toString());
+      debugPrint(e.toString());
     }
 
     return res;
@@ -46,22 +44,24 @@ class LoginController extends GetxController {
 
 
       isLoading(true);
-      print (isLoading);
+      debugPrint (isLoading.toString());
 
     String res = await loginUsers(regController.email.text,
         regController.password.text);
 
       isLoading(false);
-      print(isLoading);
+      debugPrint(isLoading.toString());
 
     try {
       if (res != 'success') {
-        return (Get.snackbar('FanClub', 'Login failed\nCheck your network connection',
+        return (Get.snackbar('FanClub', 'Login failed\n'
+            'Check your network connection or\n'
+            'check your login details',
             backgroundColor: Colors.purple, colorText: Colors.white));
       }
       else {
         res = "Login successful";
-        return Get.to(() => const Navigation());
+        return Get.off(() => const Navigation());
       }
     }
     catch (e) {
@@ -71,8 +71,7 @@ class LoginController extends GetxController {
 
   // This function initiate user Signout
   signOut() async {
-    await _auth.signOut().then((value) => Get.to(() => const LogInScreen()));
-    //Get.snackbar("Hey user", "You have been logged out", duration: const Duration(seconds: 3), backgroundColor: Colors.purple);
+    await _auth.signOut().then((value) => Get.off(() => const LogInScreen()));
 }
 
 

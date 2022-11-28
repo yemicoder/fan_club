@@ -28,7 +28,7 @@ class ForgotPasswordScreen extends StatelessWidget {
           children: [
             Image(image: const AssetImage("assets/images/forgot_pw.png"), height: 20.h,),
             SizedBox(height: 4.h,),
-            Text("Forgot your password?\nSend email to reset your password",
+            Text("Send email to reset your password",
               style: TextStyle(
                 fontSize: 18.sp
               ),
@@ -47,7 +47,7 @@ class ForgotPasswordScreen extends StatelessWidget {
                   ),
                   filled: true,
                   fillColor: Colors.grey[200],
-                  hintText: "Email",
+                  hintText: "Email address",
                   //label: Text(labelText!),
                   hintStyle:
                   TextStyle(fontSize: 15.sp, fontWeight: FontWeight.w300),

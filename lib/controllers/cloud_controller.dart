@@ -7,14 +7,16 @@ import 'package:get/get.dart';
 
 class CloudController extends GetxController {
 
-  var userData;
-  var userInterests;
+  List<dynamic> userData = [].obs;
+  List<dynamic> userInterests = ['opey', 'yemi', 'samuel'].obs;
   String userEmail = '';
   String userPhoneNumber = '';
   String userFirstName = '';
   String userLastName = '';
   String values = '';
+  List<dynamic> data = [];
   List<dynamic> interests = [];
+
 
   Future getData() async {
     final firebaseUserID = FirebaseAuth.instance.currentUser;
@@ -26,11 +28,14 @@ class CloudController extends GetxController {
         collection('users').
         doc(firebaseUserID.uid).
         get().then((value) {
-          userData = value
+          var data = value
               .data()
               ?.entries
               .map((e) => e.value)
               .toList();
+          data?.forEach((element) {
+            userData.add(element);
+          });
           print(userData);
         });
       } catch (e) {
@@ -46,16 +51,17 @@ class CloudController extends GetxController {
               .data()!
               .entries
               .map((e) => e.value).toList();
-
           interests.forEach((element) {
+            print(element);
             userInterests = element;
           });
-          print(userInterests);
+          print(userInterests.runtimeType);
         });
       } catch (e) {
         print(e.toString());
       }
     }
   }
+
 
   }

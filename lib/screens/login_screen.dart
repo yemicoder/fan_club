@@ -172,9 +172,10 @@ class _LogInScreenState extends State<LogInScreen> {
                 child: ElevatedButton(
                   style:
                   ElevatedButton.styleFrom(backgroundColor: Colors.purple),
-                  onPressed: () {
-                    loginController.login();
+                  onPressed: () async {
                     cloudController.getData();
+                    loginController.login();
+
                   },
                   child: Obx(
                     () => loginController.isLoading.value ?

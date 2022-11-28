@@ -2,7 +2,10 @@ import 'package:fan_club/screens/buddies_screen.dart';
 import 'package:fan_club/screens/profile_screen.dart';
 import 'package:fan_club/screens/signup_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 
+import '../controllers/cloud_controller.dart';
 import '../screens/discover_screen.dart';
 import '../screens/home_screen.dart';
 import '../screens/login_screen.dart';
@@ -11,12 +14,14 @@ import '../screens/settings_screen.dart';
 class Navigation extends StatefulWidget {
   const Navigation({Key? key}) : super(key: key);
 
+
   @override
   State<Navigation> createState() => _NavigationState();
 }
 
 class _NavigationState extends State<Navigation> {
   int _selectedItem = 0;
+  final cloudController = Get.put(CloudController());
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +40,7 @@ class _NavigationState extends State<Navigation> {
         unselectedFontSize: 12,
         selectedFontSize: 12,
         currentIndex: _selectedItem,
-        onTap: (index) {
+        onTap: (index)  {
           setState(() {
             _selectedItem = index;
           });
