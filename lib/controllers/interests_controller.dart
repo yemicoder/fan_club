@@ -12,7 +12,7 @@ class InterestsController extends GetxController {
 
     Interests(sport: "Football"),
     Interests(sport: "Basketball"),
-    Interests(sport: "Ice hokey"),
+    Interests(sport: "Ice hockey"),
     Interests(sport: "Motorsports"),
     Interests(sport: "Bandy"),
     Interests(sport: "Rugby"),
@@ -20,7 +20,7 @@ class InterestsController extends GetxController {
     Interests(sport: "Shooting"),
     Interests(sport: "Tennis"),
     Interests(sport: "Boxing"),
-    Interests(sport: "Ice skating"),
+    Interests(sport: "Judo"),
     Interests(sport: "Cricket"),
     Interests(sport: "Roller skating"),
     Interests(sport: "Darts"),

@@ -5,11 +5,20 @@ import 'package:responsive_sizer/responsive_sizer.dart';
 
 import '../controllers/phone_auth_controller.dart';
 
-class EnterOtpScreen extends StatelessWidget {
-  EnterOtpScreen({Key? key}) : super(key: key);
+class EnterLoginOtpScreen extends StatefulWidget {
+  const EnterLoginOtpScreen({Key? key}) : super(key: key);
 
+  @override
+  State<EnterLoginOtpScreen> createState() => _EnterLoginOtpScreenState();
+}
+
+class _EnterLoginOtpScreenState extends State<EnterLoginOtpScreen> {
   final otpController = Get.put(PhoneAuthController());
+
   final cloudController = Get.put(CloudController());
+
+  bool verified = false;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -54,14 +63,23 @@ class EnterOtpScreen extends StatelessWidget {
             ),
             SizedBox(
               width: 30.w,
+              height: 6.h,
               child: ElevatedButton(
                   onPressed: () async {
-                    otpController.verifyCode();
+                    setState(() {
+                      verified = true;
+                    });
+                    otpController.loginVerifyCode();
+                    otpController.otp.clear();
                   },
                   style:
                       ElevatedButton.styleFrom(backgroundColor: Colors.purple),
-                  child: const Text("Verify")),
-            )
+                  child: verified
+                      ? const CircularProgressIndicator(
+                          color: Colors.white,
+                        )
+                      : const Text("Verify")),
+            ),
           ],
         ),
       ),

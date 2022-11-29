@@ -1,12 +1,9 @@
-import 'dart:async';
+
 
 import 'package:fan_club/controllers/signup_controller.dart';
-import 'package:fan_club/screens/home_screen.dart';
 import 'package:fan_club/screens/success_screen.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 class VerifyEmailScreen extends StatefulWidget {
@@ -36,7 +33,7 @@ class _VerifyEmailScreenState extends State<VerifyEmailScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Obx(() => regController.isEmailVerified.value ? EmailSuccessScreen() : Scaffold(
+    return Obx(() => regController.isEmailVerified.value ? const EmailSuccessScreen() : Scaffold(
         body: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [

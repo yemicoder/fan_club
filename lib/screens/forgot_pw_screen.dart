@@ -1,17 +1,16 @@
 import 'package:fan_club/controllers/home_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 import '../controllers/login_controller.dart';
-import '../controllers/signup_controller.dart';
 
 class ForgotPasswordScreen extends StatelessWidget {
   ForgotPasswordScreen({Key? key}) : super(key: key);
 
   final loginController = Get.put(LoginController());
   final controller = Get.put(HomeController());
+
 
   @override
   Widget build(BuildContext context) {

@@ -42,9 +42,9 @@ class ProfileScreen extends StatelessWidget {
                           color: Colors.grey,
                         ),
                       ),
-                      Text(cloudController.userData[1], style: const TextStyle(
+                      Text(cloudController.data[1], style: const TextStyle(
                           color: Colors.white,
-                          fontSize: 25
+                          fontSize: 16
                       ),),
                     ],
                   ),
@@ -119,7 +119,7 @@ class ProfileScreen extends StatelessWidget {
 
                     ListTile(
                       title: const Text('Full name'),
-                      subtitle: Text("${cloudController.userData[1]} ${cloudController.userData[0]}"),
+                      subtitle: Text("${cloudController.data[1]} ${cloudController.data[0]}"),
                       leading: const Icon(Icons.person),
                     ),
 
@@ -129,7 +129,7 @@ class ProfileScreen extends StatelessWidget {
 
                     ListTile(
                       title: const Text("Email address"),
-                      subtitle: Text(cloudController.userData[3]),
+                      subtitle: Text(cloudController.data[3]),
                       leading: const Icon(Icons.email),
                     ),
 
@@ -139,7 +139,7 @@ class ProfileScreen extends StatelessWidget {
 
                     ListTile(
                       title: const Text('Phone no'),
-                      subtitle: Text(cloudController.userData[6]),
+                      subtitle: Text(cloudController.data[2]),
                       leading: const Icon(Icons.phone),
                     ),
 

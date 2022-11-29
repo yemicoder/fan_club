@@ -1,6 +1,6 @@
+import 'package:fan_club/screens/signup_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
@@ -15,7 +15,7 @@ class GetStartedScreen extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Image(image: AssetImage("assets/images/getstarted.png"), height: 40.h,),
+              Image(image: const AssetImage("assets/images/getstarted.png"), height: 40.h,),
               SizedBox(height: 3.h,),
               Text("Fan Club", style: GoogleFonts.adventPro(
                 fontSize: 30.sp,
@@ -29,7 +29,7 @@ class GetStartedScreen extends StatelessWidget {
               textAlign: TextAlign.center,),
               SizedBox(height: 7.h,),
               MaterialButton(onPressed: () {
-                Get.toNamed("/signup/");
+                Get.off(() => const SignUpScreen());
               },
                 color: Colors.purple,
               child: const Text(

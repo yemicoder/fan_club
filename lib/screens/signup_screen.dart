@@ -146,7 +146,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       ),
                       filled: true,
                       fillColor: Colors.grey[200],
-                      hintText: "your phone number here",
+                      hintText: "Your phone number here",
                       //label: Text(labelText!),
                       hintStyle:
                       TextStyle(fontSize: 15.sp, fontWeight: FontWeight.w300),
@@ -159,6 +159,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     ),
                     validator: controller.validatePhoneNumber,
                   ),
+                  SizedBox(height: 1.h,),
+                  const Text("Example: 08034******", style: TextStyle(
+                    color: Colors.grey,
+                  ),),
 
                   SizedBox(height: 3.h,),
 

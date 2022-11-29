@@ -1,4 +1,4 @@
-import 'package:fan_club/screens/login_screen.dart';
+
 import 'package:fan_club/screens/otp_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';

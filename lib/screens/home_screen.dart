@@ -1,4 +1,7 @@
+import 'package:fan_club/controllers/cloud_controller.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
@@ -18,6 +21,8 @@ class HomeScreen extends StatelessWidget {
     ["Tennis", "2.00", "assets/images/tennis.png", Colors.pink],
   ];
 
+  final cloudController = Get.put(CloudController());
+
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
@@ -29,7 +34,7 @@ class HomeScreen extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text("Hey Yemi,", style: GoogleFonts.adventPro(
+                  Text("Hey ${cloudController.data[1]},", style: GoogleFonts.adventPro(
                     fontSize: 25,
                     fontWeight: FontWeight.bold
                   ),),

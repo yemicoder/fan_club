@@ -3,16 +3,13 @@ import 'package:fan_club/controllers/home_controller.dart';
 import 'package:fan_club/controllers/login_controller.dart';
 import 'package:fan_club/controllers/signup_controller.dart';
 import 'package:fan_club/screens/forgot_pw_screen.dart';
-import 'package:fan_club/screens/otp_screen.dart';
 import 'package:fan_club/screens/signup_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
-import '../widgets/navigation.dart';
-import '../widgets/textfied_widget.dart';
+import 'login_otp_screen.dart';
 
 class LogInScreen extends StatefulWidget {
   const LogInScreen({Key? key}) : super(key: key);
@@ -29,7 +26,6 @@ class _LogInScreenState extends State<LogInScreen> {
   final loginController = Get.put(LoginController());
   final regController = Get.put(SignUpController());
   final cloudController = Get.put(CloudController());
-
 
   @override
   Widget build(BuildContext context) {
@@ -92,15 +88,14 @@ class _LogInScreenState extends State<LogInScreen> {
                   ),
                   filled: true,
                   fillColor: Colors.grey[200],
-                  hintText: "Email or Phone number",
+                  hintText: "Email",
                   //label: Text(labelText!),
                   hintStyle:
                       TextStyle(fontSize: 15.sp, fontWeight: FontWeight.w300),
-                  labelStyle: TextStyle(color: Colors.purple),
+                  labelStyle: const TextStyle(color: Colors.purple),
                   enabledBorder: InputBorder.none,
                   focusedBorder: const OutlineInputBorder(
-                    borderSide: BorderSide(
-                        width: 0.5, color: Colors.purple),
+                    borderSide: BorderSide(width: 0.5, color: Colors.purple),
                   ),
                 ),
                 validator: controller.validateEmail,
@@ -115,7 +110,6 @@ class _LogInScreenState extends State<LogInScreen> {
                 controller: regController.password,
                 autovalidateMode: AutovalidateMode.onUserInteraction,
                 obscureText: isVisible,
-                keyboardType: TextInputType.number,
                 decoration: InputDecoration(
                   prefixIcon: const Icon(
                     Icons.lock,
@@ -146,8 +140,7 @@ class _LogInScreenState extends State<LogInScreen> {
                   ),
                   enabledBorder: InputBorder.none,
                   focusedBorder: const OutlineInputBorder(
-                    borderSide: BorderSide(
-                        width: 0.5, color: Colors.purple),
+                    borderSide: BorderSide(width: 0.5, color: Colors.purple),
                   ),
                 ),
                 validator: controller.validatePassword,
@@ -156,12 +149,14 @@ class _LogInScreenState extends State<LogInScreen> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
-                  TextButton(onPressed: () {
-                    Get.to(() => ForgotPasswordScreen());
-                  },
-                      child: const Text("Forgot password", style: TextStyle(
-                        color: Colors.purple
-                      ),)),
+                  TextButton(
+                      onPressed: () {
+                        Get.to(() => ForgotPasswordScreen());
+                      },
+                      child: const Text(
+                        "Forgot password",
+                        style: TextStyle(color: Colors.purple),
+                      )),
                 ],
               ),
 
@@ -171,30 +166,32 @@ class _LogInScreenState extends State<LogInScreen> {
                 width: double.infinity,
                 child: ElevatedButton(
                   style:
-                  ElevatedButton.styleFrom(backgroundColor: Colors.purple),
+                      ElevatedButton.styleFrom(backgroundColor: Colors.purple),
                   onPressed: () async {
-                    cloudController.getData();
                     loginController.login();
-
                   },
                   child: Obx(
-                    () => loginController.isLoading.value ?
-                    const CircularProgressIndicator(color: Colors.white,)
+                    () => loginController.isLoading.value
+                        ? const CircularProgressIndicator(
+                            color: Colors.white,
+                          )
                         : const Text(
-                      "Login",
-                      style: TextStyle(color: Colors.white),
-                    ),
+                            "Login",
+                            style: TextStyle(color: Colors.white),
+                          ),
                   ),
-                ),),
+                ),
+              ),
               Center(
-                child: TextButton(onPressed: (){
-                  Get.to(() => OtpScreen());
-                },
+                child: TextButton(
+                    onPressed: () {
+                      Get.to(() => LoginOtpScreen());
+                    },
                     child: const Text(
-                      "Login with phone number", style: TextStyle(
-                      color: Colors.red,
-                      decoration: TextDecoration.underline
-                    ),
+                      "Login with phone number",
+                      style: TextStyle(
+                          color: Colors.red,
+                          decoration: TextDecoration.underline),
                     )),
               ),
               SizedBox(
